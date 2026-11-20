@@ -1,0 +1,53 @@
+---
+title: "Report"
+output: pdf_document
+---
+
+# 0. Setup
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+rm(list = ls())
+options(
+  mc.cores = parallel::detectCores(),
+  styler.addins_style_transformer = styler::tidyverse_style(indent_by = 4)
+)
+
+set.seed(2026) 
+rstan_options(auto_write = TRUE)
+
+lintr::use_lintr(type = "tidyverse")
+lintr::lint_dir()
+lintr::lint(filename = "R/bad.R")
+
+#source(file = "")
+
+chosen_colors <- list(dark_blue = "#272774",
+                      light_blue = "#4182FF",
+                      pink = "#EBC4B4",
+                      purple = "#B880FF",
+                      yellow= "#FFDD77",
+                      green = "#7DDE88")
+
+
+```
+# 1. Introduction
+
+# 2. Analysis
+
+## 2.1 Descriptive Analysis
+
+
+## 2.2 Modelisation
+
+# 3. Conclusion
+
+# 4. Session Information
+
+```{r}
+cat(sessionInfo()$R.version$version.string, "\n")
+
+installed.packages()[names(sessionInfo()$otherPkgs), "Version"]
+```
