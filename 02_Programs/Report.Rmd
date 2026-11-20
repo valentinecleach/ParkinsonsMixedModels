@@ -33,11 +33,27 @@ chosen_colors <- list(dark_blue = "#272774",
 
 
 ```
+
 # 1. Introduction
+
+```{r}
+data <- read.csv("../01_Data/parkinsons_updrs.data")
+
+head(data)
+
+summary(data %>%   select(total_UPDRS, motor_UPDRS))
+
+4*4
+```
+
 
 # 2. Analysis
 
 ## 2.1 Descriptive Analysis
+```{r}
+ggplot(data = data)%>%
+  geom_point(aes(x = ))
+```
 
 
 ## 2.2 Modelisation
