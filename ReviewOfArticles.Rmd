@@ -1,0 +1,93 @@
+---
+title: "A Brief Review Of Related Published Articles"
+output: pdf_document
+---
+
+# 0. Reminder of our case
+Longitudinal but not all at the same time. Ie 
+# 1. Introduction ----
+In order to gain knowledge both on Parkinson's disease (PD), and how longitudinal mixed model analysis are conducted in practice, a few studies about PD in a longitudinal analysis. 
+
+The following papers have been read in no specific order: (this is reverse alphabetical??)
+1. Wang 2017
+2. Tong 2026
+3. Sanatana-Roman 2025
+4. Marinez Martin 2015
+5. Kim 2026
+6. Hanff 2025 
+
+# 2. Article Reviews ----
+
+## 2.1 M. Wang et al. 2017, Predicting the multi-domain progression of Parkinson’s disease: a Bayesian multivariate generalized linear mixed-effect model ----
+
+*Goal*: PREDICT clinical progression of PD
+*Study*: Retrospective study, 3 completed visits
+*Available Data*: sample size: 76, 3 visits per patient
+*Methods*: Multivariate generalized linear mixed-effect model under basian framework
+*Primary Outcomes*: 
+- MDS-UPDRS II (motor aspects) (ranges from 0 to 52)
+- MDS-UPDRS I (non-motor aspects) (ranges from 0 to 52)
+- Imbalance: binary 1 (depends on other tests)
+
+*Timepoints*: 18 mo, 36 mo
+*PFs/TEMs/predictor variables*:
+- Time since BL visits
+- BL age
+- gender
+- Education
+- DOI
+- HAMD (standardized)
+- MoCA (1 pt added if Education<13)
+- LESS (standardized)
+
+*Sensitivity analysis*:
+*Key results*:
+*Limitations/ Assumptions made*: 
+- Association structure among multiple outcomes
+- no power analysis
+- Missing at random is assumed
+
+*Packages*: mixAK
+
+
+# 3. Overview of PD
+
+**What is the disease**
+- Age related
+- Neurodegenerative discorder marked by dopaminergic cell loss in the substantia nigra of the basal ganglia
+- US: 1/2 Million people have PD
+
+**What are the current treatments, and how is this changing**
+- Hard to test neuroprotective agents as hindered
+- Treatments would aim to slow, halt or reverse disease progression
+
+
+**Assessing PD progression**
+- MDS-UPDRS: global mvmt score (I: non-motor, II: motor)
+- HAMD: Depression score
+- MoCA: Cognitive assessment
+- LEDD: Drug usage
+- DOI: Duration of illness
+
+UPDRS I and II are not too drug dependant.
+
+# 4. Overview of Longitudinal analysis using mixed models
+
+# 5. References
+# 6. Abbreviations 
+To order once done / make presentable table 
+DOI: Duratio of illness
+MDS
+UPDRS
+HAMD
+MoCA
+LEDD
+US: United States of America
+pt: point
+BL: baseline
+PD: Parkinson's disease
+mo: months
+
+# 7. Some personal notes
+## 7.1 Stats methods to look into
+Anderson-Darling (AD) test to check normality assumption of continuous variables
