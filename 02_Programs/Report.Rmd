@@ -51,8 +51,119 @@ summary(data %>%   select(total_UPDRS, motor_UPDRS))
 
 ## 2.1 Descriptive Analysis
 ```{r}
-ggplot(data = data)%>%
-  geom_point(aes(x = ))
+data %>% 
+  filter(subject.==1)%>%
+  ggplot(aes(x = test_time, y=total_UPDRS))+
+  geom_point()+  
+  geom_line()+  
+  labs(x = "Test time",
+       y = "Total UPDRS",
+       title = "Total UPDRS at different timepoints",
+       subtitle = "Suject 1") +
+  theme_bw()
+
+data %>% 
+  ggplot(aes(x = test_time, y = total_UPDRS, 
+             colour = factor(subject.),
+             group = subject.)) +
+  geom_point() +
+  geom_line() +
+  labs(colour = "Subject",
+       x = "Test time",
+       y = "Total UPDRS",
+       title = "Total UPDRS at different timepoints",
+       subtitle = "All subjects") +
+  theme_bw()
+```
+# 2.2.1 Treating Timepoints
+
+```{r}
+data%>%
+  distinct(test_time)%>%
+  summary()
+```
+
+```{r}
+data %>%
+  summarise(`number of distinct timepoints` = n_distinct(test_time))
+```
+Negative timepoints
+```{r}
+data%>%
+  filter(test_time <0)%>%
+  select(`subjects with negative timepoints` = subject.)%>%
+  distinct()
+```
+We only have 2 subjects with 
+```{r}
+data%>%
+  filter(subject. %in% c(34, 42))%>%
+  select(subject., test_time, total_UPDRS)%>%
+    ggplot(aes(x = test_time, y = total_UPDRS, 
+             colour = factor(subject.),
+             group = subject.)) +
+  geom_point() +
+  geom_line() +
+  labs(colour = "Subject",
+       x = "Test time",
+       y = "Total UPDRS",
+       title = "Total UPDRS at different timepoints",
+       subtitle = "Subjects with timepoints < 0") +
+  theme_bw()
+```
+We can probably just remove the negative timepoints as nothing too alarming elsewhere?
+
+```{r}
+timepoints_per_patient <- data %>%
+  group_by(subject.) %>%
+  summarise(
+    n_timepoints = n_distinct(test_time),
+    .groups = "drop"
+  )
+```
+
+
+```{r}
+summary(timepoints_per_patient%>% select(n_timepoints))
+```
+
+
+
+```{r}
+ggplot(timepoints_per_patient,
+       aes(x = n_timepoints)) +
+  geom_bar() +
+  labs(
+    x = "Number of timepoints per patient",
+    y = "Number of patients"
+  ) +
+  theme_bw()
+```
+```{r}
+timepoints_per_patient %>%
+  ggplot() +
+  geom_col(aes(x = subject., y=n_timepoints), 
+           fill=chosen_colors$pink) +
+  geom_hline(
+    yintercept = mean(timepoints_per_patient$n_timepoints),
+    linetype = "dashed",
+    colour = chosen_colors$light_blue,
+    linewidth = 1
+  ) +
+  labs(
+    x = "Patient",
+    y = "Number of timepoints",
+    title = "Number of timepoints for each patient",
+    subtitle = paste(
+      "Mean number of timepoints:",
+      round(mean(timepoints_per_patient$n_timepoints), 2)
+    )
+  ) +  theme_bw()
+```
+
+```{r}
+data %>% 
+  mutate(mutated_test_time = )
 ```
 
 
